@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { LeftNav } from "@/components/layout/LeftNav";
+import {HomeHeader} from "@/components/layout/HomeHeader";
+import {RecommendTimeline} from "@/components/layout/RecommendTimeline";
+import { FollowingTimeline } from "@/components/layout/FollowingTimeline";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -31,7 +34,9 @@ export default function RootLayout({
       >
         {/* これがページの1層目になる */}
         <LeftNav />
-        {children}
+        <HomeHeader/>
+        <RecommendTimeline/>
+        <FollowingTimeline/>
       </body>
     </html>
   );
