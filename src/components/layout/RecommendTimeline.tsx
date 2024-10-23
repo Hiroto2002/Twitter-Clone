@@ -1,4 +1,4 @@
-"use client";
+"use client";//useState使う時に必要
 
 import React, { useState } from "react";
 
@@ -24,7 +24,7 @@ const recommendations = [
 export const RecommendTimeline = () => {
     const [items, setItems] = useState(recommendations);
 
-    // いいね関数
+    // いいね関数の定義してるよ
     const toggleGood = (userid: number) => {
         const updatedItems = items.map(item =>
             item.userid === userid ? { ...item, good: !item.good } : item
@@ -34,9 +34,13 @@ export const RecommendTimeline = () => {
     //ツイート関数
     return (
         <div className="timeline" style={styles.timelineContainer}>
+            {/* ここからループ */}
             {items.map((item) => (
+                // keyになるのは名前とかidとか　なんでそうなるかは今度マエヒロに聞く
                 <div key={item.userid} style={styles.timelineItem}>
+                    {/* pタグに挟まれてるところを表示するよ */}
                     <p style={styles.comment}>{item.comment}</p>
+                    {/* いいねボタンchatGPTだからよくわかってない */}
                     <button 
                         style={item.good ? styles.goodButtonActive : styles.goodButton}
                         onClick={() => toggleGood(item.userid)}
@@ -49,6 +53,9 @@ export const RecommendTimeline = () => {
     );
 };
 
+
+
+//以下CSS
 const styles: { [key: string]: React.CSSProperties } = {
     timelineContainer: {
         padding: "1em",

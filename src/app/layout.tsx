@@ -35,8 +35,6 @@ export default function RootLayout({
         {/* これがページの1層目になる */}
         <LeftNav />
         <HomeHeader/>
-        <RecommendTimeline/>
-        <FollowingTimeline/>
       </body>
     </html>
   );

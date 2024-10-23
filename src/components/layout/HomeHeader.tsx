@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
 import React, { useState } from "react";
+import { RecommendTimeline } from './RecommendTimeline';  // おすすめタイムライン
+import { FollowingTimeline } from './FollowingTimeline';  // フォロー中タイムライン
 
 export const HomeHeader = () => {
     const [selected, setSelected] = useState("おすすめ"); // デフォルトで「おすすめ」を選択
@@ -12,8 +12,8 @@ export const HomeHeader = () => {
     };
 
     return (
-        <div className="timelineHeader" style={styles.timelineHeader}>
-            <Link href="/RecomandTimeline" passHref>
+        <div>
+            <div className="timelineHeader" style={styles.timelineHeader}>
                 <button
                     className="timelineButton"
                     style={{
@@ -24,8 +24,6 @@ export const HomeHeader = () => {
                 >
                     おすすめ
                 </button>
-            </Link>
-            <Link href="/FollowingTimeLine" passHref>
                 <button
                     className="timelineButton"
                     style={{
@@ -36,7 +34,12 @@ export const HomeHeader = () => {
                 >
                     フォロー中
                 </button>
-            </Link>
+            </div>
+
+            {/* タイムラインの表示 */}
+            <div>
+                {selected === "おすすめ" ? <RecommendTimeline /> : <FollowingTimeline />}
+            </div>
         </div>
     );
 };
@@ -48,6 +51,7 @@ const styles: { [key: string]: React.CSSProperties } = {
         backgroundColor: "#f9f9f9",
         borderBottom: "1px solid #e0e0e0",
         marginLeft: "5em", // LeftNavの右側に表示させる
+        display: "flex",  // フレックスボックスでボタンを横並びに
     },
     timelineButton: {
         height: "100%",
@@ -57,8 +61,8 @@ const styles: { [key: string]: React.CSSProperties } = {
         cursor: "pointer",
         fontSize: "1rem",
         transition: "background-color 0.3s ease",
+        display: "flex",
         alignItems: "center",
         justifyContent: "center",
     },
 };
-
