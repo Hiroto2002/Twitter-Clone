@@ -23,12 +23,15 @@ dependencies:
   '@paralleldrive/cuid2':
     specifier: ^2.2.2
     version: 2.2.2
+  clsx:
+    specifier: ^2.1.1
+    version: 2.1.1
   dotenv:
     specifier: ^16.4.5
     version: 16.4.5
   drizzle-orm:
     specifier: ^0.35.3
-    version: 0.35.3(@libsql/client-wasm@0.14.0)(@types/react@18.3.11)(postgres@3.4.4)(react@18.3.1)
+    version: 0.35.3(@libsql/client-wasm@0.14.0)(@types/react@18.3.11)(postgres@3.3.5)(react@18.3.1)
   hono:
     specifier: ^4.6.6
     version: 4.6.6
@@ -36,14 +39,17 @@ dependencies:
     specifier: 14.2.15
     version: 14.2.15(react-dom@18.3.1)(react@18.3.1)
   postgres:
-    specifier: ^3.4.4
-    version: 3.4.4
+    specifier: '3.3'
+    version: 3.3.5
   react:
     specifier: ^18
     version: 18.3.1
   react-dom:
     specifier: ^18
     version: 18.3.1(react@18.3.1)
+  tailwind-merge:
+    specifier: ^2.5.4
+    version: 2.5.4
   zod:
     specifier: ^3.23.8
     version: 3.23.8
@@ -2062,7 +2068,7 @@ packages:
       - supports-color
     dev: true
 
-  /drizzle-orm@0.35.3(@libsql/client-wasm@0.14.0)(@types/react@18.3.11)(postgres@3.4.4)(react@18.3.1):
+  /drizzle-orm@0.35.3(@libsql/client-wasm@0.14.0)(@types/react@18.3.11)(postgres@3.3.5)(react@18.3.1):
     resolution: {integrity: sha512-Uv6N+b36x4BaZlxc96e+ag7RnMapBLGhc4SSi2F7RDwqYJipWjaU/P68RUp1FbW9r+mxoDp8nMz2Eece8PJxfA==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
@@ -2154,7 +2160,7 @@ packages:
     dependencies:
       '@libsql/client-wasm': 0.14.0
       '@types/react': 18.3.11
-      postgres: 3.4.4
+      postgres: 3.3.5
       react: 18.3.1
     dev: false
 
@@ -3713,9 +3719,8 @@ packages:
       source-map-js: 1.2.1
     dev: true
 
-  /postgres@3.4.4:
-    resolution: {integrity: sha512-IbyN+9KslkqcXa8AO9fxpk97PA4pzewvpi2B3Dwy9u4zpV32QicaEdgmF3eSQUzdRk7ttDHQejNgAEr4XoeH4A==}
-    engines: {node: '>=12'}
+  /postgres@3.3.5:
+    resolution: {integrity: sha512-+JD93VELV9gHkqpV5gdL5/70HdGtEw4/XE1S4BC8f1mcPmdib3K5XsKVbnR1XcAyC41zOnifJ+9YRKxdIsXiUw==}
     dev: false
 
   /prelude-ls@1.2.1:
@@ -4134,6 +4139,10 @@ packages:
   /supports-preserve-symlinks-flag@1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
+
+  /tailwind-merge@2.5.4:
+    resolution: {integrity: sha512-0q8cfZHMu9nuYP/b5Shb7Y7Sh1B7Nnl5GqNr1U+n2p6+mybvRtayrQ+0042Z5byvTA8ihjlP8Odo8/VnHbZu4Q==}
+    dev: false
 
   /tailwindcss@3.4.14:
     resolution: {integrity: sha512-IcSvOcTRcUtQQ7ILQL5quRDg7Xs93PdJEk1ZLbhhvJc7uj/OAhYOnruEiwnGgBvUtaUAJ8/mhSw1o8L2jCiENA==}

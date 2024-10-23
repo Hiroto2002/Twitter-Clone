@@ -1,4 +1,4 @@
-import { DBResponse } from "@/types/data/dbResponse";
+import { DBResponse } from "@/types/Response";
 
 async function fetchGet<T>(
   url: string,

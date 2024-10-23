@@ -1,20 +1,19 @@
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 // Material Iconsのインポート
-import HomeIcon from '@mui/icons-material/Home';
-import SearchIcon from '@mui/icons-material/Search';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import MessageIcon from '@mui/icons-material/Message';
-import BookmarkIcon from '@mui/icons-material/Bookmark';
-import PersonIcon from '@mui/icons-material/Person';
+import HomeIcon from "@mui/icons-material/Home";
+import SearchIcon from "@mui/icons-material/Search";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import MessageIcon from "@mui/icons-material/Message";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import PersonIcon from "@mui/icons-material/Person";
 
 const NAV_ITEMS = [
   {
     name: "Home",
     href: "/",
-    icon: <HomeIcon />, 
+    icon: <HomeIcon />,
   },
   {
     name: "Search",
@@ -45,9 +44,9 @@ const NAV_ITEMS = [
 
 export const LeftNav = () => {
   return (
-    <div className="flex" style={ styles.navContainers }>
+    <div className="flex" style={styles.navContainers}>
       {NAV_ITEMS.map((nav) => (
-        <div key={nav.name} style={ styles.navContainer } >
+        <div key={nav.name} style={styles.navContainer}>
           <NavItem href={nav.href} name={nav.name} icon={nav.icon} />
         </div>
       ))}
@@ -55,16 +54,16 @@ export const LeftNav = () => {
   );
 };
 
-const styles:{[key:string]:React.CSSProperties}={
-  navContainers:{
-    width:"5em",
+const styles: { [key: string]: React.CSSProperties } = {
+  navContainers: {
+    width: "5em",
     display: "flex",
     flexDirection: "column",
-    position:"fixed",
+    position: "fixed",
   },
   navContainer: {
-    width:"5em",
-    height:"5em",
+    width: "5em",
+    height: "5em",
     gap: "1rem",
     padding: "1rem",
     backgroundColor: "#f0f0f0",
@@ -72,7 +71,7 @@ const styles:{[key:string]:React.CSSProperties}={
     alignItems: "center",
     justifyContent: "center",
   },
-}
+};
 
 type Props = {
   href: string;
@@ -88,9 +87,8 @@ export const NavItem = (props: Props) => {
       href={href}
       className="block p-4 text-gray-800 hover:bg-gray-100"
     >
-
       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-        {icon} 
+        {icon}
       </div>
     </Link>
   );
