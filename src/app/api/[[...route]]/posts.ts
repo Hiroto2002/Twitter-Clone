@@ -1,5 +1,4 @@
-import db from "@/db/drizzle";
-import { posts } from "@/db/schema";
+import { posts } from "../../../../drizzle/schema";
 import { zValidator } from "@hono/zod-validator";
 import { createId } from "@paralleldrive/cuid2";
 import { Hono } from "hono";
@@ -19,14 +18,6 @@ const app = new Hono()
   })
   .post("/", zValidator("form", schema), async (c) => {
     const data = c.req.valid("form");
-
-    const post = await db
-      .insert(posts)
-      .values({
-        id: createId(),
-        text: data.text,
-      })
-      .returning();
 
     return c.json(post);
   });
