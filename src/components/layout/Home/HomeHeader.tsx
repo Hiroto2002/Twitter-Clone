@@ -1,16 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
-import { RecommendTimeline } from './RecommendTimeline';  // おすすめタイムライン
-import { FollowingTimeline } from './FollowingTimeline';  // フォロー中タイムライン
+import React from "react";
 
-export const HomeHeader = () => {
-    const [selected, setSelected] = useState("おすすめ"); // デフォルトで「おすすめ」を選択
+type HomeHeaderProps = {
+    selected: string;
+    onSelect: (buttonName: string) => void;
+};
 
-    const handleSelect = (buttonName: string) => {
-        setSelected(buttonName); // 選択されたボタンの名前を設定
-    };
-
+export const HomeHeader = ({ selected, onSelect }: HomeHeaderProps) => {
     return (
         <div>
             <div className="timelineHeader" style={styles.timelineHeader}>
@@ -20,7 +17,7 @@ export const HomeHeader = () => {
                         ...styles.timelineButton,
                         borderBottom: selected === "おすすめ" ? "2px solid blue" : "none",
                     }}
-                    onClick={() => handleSelect("おすすめ")}
+                    onClick={() => onSelect("おすすめ")}
                 >
                     おすすめ
                 </button>
@@ -30,15 +27,10 @@ export const HomeHeader = () => {
                         ...styles.timelineButton,
                         borderBottom: selected === "フォロー中" ? "2px solid blue" : "none",
                     }}
-                    onClick={() => handleSelect("フォロー中")}
+                    onClick={() => onSelect("フォロー中")}
                 >
                     フォロー中
                 </button>
-            </div>
-
-            {/* タイムラインの表示 */}
-            <div>
-                {selected === "おすすめ" ? <RecommendTimeline /> : <FollowingTimeline />}
             </div>
         </div>
     );
@@ -50,13 +42,12 @@ const styles: { [key: string]: React.CSSProperties } = {
         width: "50vw",
         backgroundColor: "#f9f9f9",
         borderBottom: "1px solid #e0e0e0",
-        marginLeft: "5em", // LeftNavの右側に表示させる
-        display: "flex",  // フレックスボックスでボタンを横並びに
+        display: "flex",
     },
     timelineButton: {
         height: "100%",
-        width:"50%",
-        margin: 0, // マージンをゼロにする
+        width: "50%",
+        margin: 0,
         borderRadius: 0,
         cursor: "pointer",
         fontSize: "1rem",

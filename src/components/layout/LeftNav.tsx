@@ -1,55 +1,66 @@
-import Link from "next/link";
-import React from "react";
 
-// Material Iconsのインポート
-import HomeIcon from "@mui/icons-material/Home";
-import SearchIcon from "@mui/icons-material/Search";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import MessageIcon from "@mui/icons-material/Message";
-import BookmarkIcon from "@mui/icons-material/Bookmark";
-import PersonIcon from "@mui/icons-material/Person";
+"use client";
+
+import React, { useState } from "react";
+// シーンインポート
+import { Home } from "./Home/Home";
+import { Search } from "./Search/Search";
+import { Bell } from "./Bell/Bell";
+import { Message } from "./Message/Message";
+import { Bookmark } from "./Bookmark/Bookmark";
+import { Profile } from "./Profile/Profile";
+// アイコンインポート
+import HomeIcon from '@mui/icons-material/Home';
+import SearchIcon from '@mui/icons-material/Search';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import MessageIcon from '@mui/icons-material/Message';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
+import PersonIcon from '@mui/icons-material/Person';
 
 const NAV_ITEMS = [
-  {
-    name: "Home",
-    href: "/",
-    icon: <HomeIcon />,
-  },
-  {
-    name: "Search",
-    href: "/Search",
-    icon: <SearchIcon />,
-  },
-  {
-    name: "Bell",
-    href: "/Bell",
-    icon: <NotificationsIcon />,
-  },
-  {
-    name: "Message",
-    href: "/Message",
-    icon: <MessageIcon />,
-  },
-  {
-    name: "Bookmark",
-    href: "/Bookmark",
-    icon: <BookmarkIcon />,
-  },
-  {
-    name: "Profile",
-    href: "/Profile",
-    icon: <PersonIcon />,
-  },
+  { name: "Home", component: <Home />, icon: <HomeIcon /> },
+  { name: "Search", component: <Search />, icon: <SearchIcon /> },
+  { name: "Bell", component: <Bell />, icon: <NotificationsIcon /> },
+  { name: "Message", component: <Message />, icon: <MessageIcon /> },
+  { name: "Bookmark", component: <Bookmark />, icon: <BookmarkIcon /> },
+  { name: "Profile", component: <Profile />, icon: <PersonIcon /> },
+
 ];
 
 export const LeftNav = () => {
+  const [activeComponent, setActiveComponent] = useState(<Home />); // ホーム画面をデフォルトで表示
   return (
-    <div className="flex" style={styles.navContainers}>
-      {NAV_ITEMS.map((nav) => (
-        <div key={nav.name} style={styles.navContainer}>
-          <NavItem href={nav.href} name={nav.name} icon={nav.icon} />
-        </div>
-      ))}
+
+    <div >
+      <div className="flex" style={styles.navContainers}>
+        {NAV_ITEMS.map((nav) => (
+          <NavItem
+            key={nav.name}
+            name={nav.name}
+            icon={nav.icon}
+            onClick={() => setActiveComponent(nav.component)}
+          />
+        ))}
+      </div>
+      <div style={styles.contentContainer}>
+        {activeComponent} {/* 現在選択されているコンポーネントを表示 */}
+      </div>
+    </div>
+  );
+};
+type Props = {
+  name: string;
+  icon: React.ReactNode;
+  onClick: () => void;
+};
+
+const NavItem = (props: Props) => {
+  const { name, icon, onClick } = props;
+  return (
+    <div style={styles.navContainer} onClick={onClick}>
+      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+        {icon}
+      </div>
     </div>
   );
 };
@@ -64,32 +75,15 @@ const styles: { [key: string]: React.CSSProperties } = {
   navContainer: {
     width: "5em",
     height: "5em",
-    gap: "1rem",
-    padding: "1rem",
     backgroundColor: "#f0f0f0",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    cursor: "pointer", // カーソルをポインタに変更
   },
-};
+  contentContainer: {
+    marginLeft: "6em", // ナビゲーションバーの右側に表示
+    width: "100%",
+  },
 
-type Props = {
-  href: string;
-  name: string;
-  icon: React.ReactNode; //MaterialIconを使うときはこの型
-};
-
-export const NavItem = (props: Props) => {
-  const { name, href, icon } = props;
-  return (
-    <Link
-      key={name}
-      href={href}
-      className="block p-4 text-gray-800 hover:bg-gray-100"
-    >
-      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-        {icon}
-      </div>
-    </Link>
-  );
 };
