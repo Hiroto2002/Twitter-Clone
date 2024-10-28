@@ -41,6 +41,7 @@ const config: Config = {
     "^@/(.*)$": "<rootDir>/src/$1", // パスエイリアスのサポート
   },
   testPathIgnorePatterns: ["<rootDir>/.next/", "<rootDir>/node_modules/"], // .nextやnode_modulesを無視
+  setupFilesAfterEnv: ["./setupJest.ts"],
   // A list of reporter names that Jest uses when writing coverage reports
   // coverageReporters: [
   //   "json",
