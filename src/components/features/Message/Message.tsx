@@ -3,9 +3,10 @@ import Link from "next/link";
 import React from "react";
 
 
-export const Bell = () => {
+export const Message = () => {
     return (
         <div>
+            DM画面
         </div>
     );
 };

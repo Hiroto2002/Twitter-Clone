@@ -1,63 +1,33 @@
-"use client"; // useState使う時に必要
+import React, { useState } from 'react'
+import { PostData } from '../Home';
+import Image from 'next/image';
 
-import React, { useState } from "react";
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
-// ユーザーアイコンの取得関数
-const getUserIcon = (userId: string) => {
-    return `/images/${userId}.png`;  // imagesフォルダにユーザーID.pngがある想定
-};
+type Props ={
+    postData:PostData[]
+    handleSetPostData:(data:PostData[])=>void
+}
 
-// ダミーデータ
-const recommendations = [
-    { 
-        tweetId: 1,
-        text: "おはよう",
-        images: [],
-        good: false,
-        count_good: 5,
-        count_reply: 2,
-        count_retweet: 1,
-        created_at: "2024-10-24 08:00",
-        user: {
-            id: "adeam02",
-            name: "maehiro",
-            icon: getUserIcon("adeam02"), 
-            },
-    },
-    {
-        tweetId: 2,
-        text: "こんにちは",
-        images: [],
-        good: false,
-        count_good: 8,
-        count_reply: 3,
-        count_retweet: 2,
-        created_at: "2024-10-24 12:00",
-        user: {
-            id: "nyannyanpome",
-            name: "にゃんぽめ",
-            icon: getUserIcon("nyannyanpome"),  
-        }
-    },
-];
-
-export const RecommendTimeline = () => {
-    const [items, setItems] = useState(recommendations);
-
-    const toggleGood = (tweetId: number) => {
-        const updatedItems = items.map(item =>
-            item.tweetId === tweetId ? { ...item, good: !item.good, count_good: item.good ? item.count_good - 1 : item.count_good + 1 } : item
+export const TimeLine = (props:Props) => {
+    // (props)プロパティを受け取る
+    const {postData,handleSetPostData} = props
+    
+    // いいねの状態を管理する
+    const toggleGood = (tweetId: number) => { 
+        const updatedItems = postData.map(item =>
+        item.tweetId === tweetId ? { ...item, good: !item.good, count_good: item.good ? item.count_good - 1 : item.count_good + 1 } : item
         );
-        setItems(updatedItems);
+      // handleSetPostData関数を呼び出して、更新されたデータを渡す
+    handleSetPostData(updatedItems);
     };
-
     return (
         <div className="timeline" style={styles.timelineContainer}>
-            {items.map((item) => (
+            {postData.map((item) => (
                 <div key={item.tweetId} style={styles.timelineItem}>
                     {/* ユーザー情報 */}
                     <div style={styles.userInfo}>
-                        <img src={item.user.icon } alt="User Icon" style={styles.userIcon} />
+                        <Image src={item.user.icon } alt="User Icon" style={styles.userIcon} width={30} height={30}/>
                         <div style={styles.userDetails}>
                             <span style={styles.userName}>{item.user.name}</span>
                             <span style={styles.userId}>@{item.user.id}</span>
@@ -76,12 +46,13 @@ export const RecommendTimeline = () => {
                     </div>
 
                     {/* いいねボタン */}
-                    <button
+                    {/* <button
                         style={item.good ? styles.goodButtonActive : styles.goodButton}
                         onClick={() => toggleGood(item.tweetId)}
                     >
-                        {item.good ? "いいね済み" : "いいね"}
-                    </button>
+                    </button> */}
+                    <FavoriteIcon style={item.good ? styles.goodButtonActive : styles.goodButton}
+                        onClick={() => toggleGood(item.tweetId)}/>
                 </div>
             ))}
         </div>
@@ -91,11 +62,11 @@ export const RecommendTimeline = () => {
 // CSSスタイル
 const styles: { [key: string]: React.CSSProperties } = {
     timelineContainer: {
+        overflowY: "scroll",
         padding: "1em",
-        width: "50vw",
+        width: "100%",
+        flex: 1,  /* 残りの高さ全てを占める */
         backgroundColor: "#f9f9f9",
-        borderRadius: "8px",
-        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
     },
     timelineItem: {
         flexDirection: "column",
@@ -167,3 +138,5 @@ const styles: { [key: string]: React.CSSProperties } = {
         alignSelf: "flex-start",
     },
 };
+
+

@@ -1,10 +1,11 @@
 "use client";
 
 import React from "react";
+import { SelectedTimeline } from "./Home";
 
 type HomeHeaderProps = {
-    selected: string;
-    onSelect: (buttonName: string) => void;
+    selected: SelectedTimeline;
+    onSelect: (buttonName: SelectedTimeline) => void;
 };
 
 export const HomeHeader = ({ selected, onSelect }: HomeHeaderProps) => {
@@ -39,14 +40,14 @@ export const HomeHeader = ({ selected, onSelect }: HomeHeaderProps) => {
 const styles: { [key: string]: React.CSSProperties } = {
     timelineHeader: {
         height: "5em",
-        width: "50vw",
+        width: "100%",
         backgroundColor: "#f9f9f9",
         borderBottom: "1px solid #e0e0e0",
         display: "flex",
     },
     timelineButton: {
         height: "100%",
-        width: "50%",
+        width: "100%",
         margin: 0,
         borderRadius: 0,
         cursor: "pointer",

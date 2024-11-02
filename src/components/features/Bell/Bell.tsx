@@ -3,9 +3,10 @@ import Link from "next/link";
 import React from "react";
 
 
-export const Profile = () => {
+export const Bell = () => {
     return (
         <div>
+            通知
         </div>
     );
 };
