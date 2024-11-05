@@ -3,7 +3,6 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { LeftNav } from "@/components/layout/LeftNav";
 
-
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -32,9 +31,7 @@ export default function RootLayout({
       >
         {/* これがページの1層目になる */}
         <LeftNav />
-        <div  style={styles.contentContainer}>
-          {children}
-        </div>
+        <div style={styles.contentContainer}>{children}</div>
       </body>
     </html>
   );
@@ -42,7 +39,8 @@ export default function RootLayout({
 
 const styles: { [key: string]: React.CSSProperties } = {
   contentContainer: {
-    marginLeft: "5em", // ナビゲーションバーの右側に表示
-    width: "100%",
+    marginLeft: "10%", // ナビゲーションバーの右側に表示
+    width: "90%",
+    display: "flex",
   },
 };

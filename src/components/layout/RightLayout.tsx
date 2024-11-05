@@ -1,18 +1,18 @@
-import React, { CSSProperties } from "react";
+import React from "react";
 
 type Props = {
   children: React.ReactNode;
 };
-
-export const CenterLayout = (props: Props) => {
+export const RightLayout = (props: Props) => {
   const { children } = props;
   return <div style={styles}>{children}</div>;
 };
 
-const styles: CSSProperties = {
+const styles: React.CSSProperties = {
   display: "flex",
+  alignItems: "center",
   height: "100vh",
   flexDirection: "column",
-  width: "70%",
-  maxWidth: "70%",
-};
+  width: "30%",
+  maxWidth: "30%",
+} as const;

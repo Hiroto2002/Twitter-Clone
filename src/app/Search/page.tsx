@@ -1,10 +1,8 @@
-import React from 'react'
+import React from "react";
 import { Search } from "@/components/features/Search/Search";
 
 const Page = () => {
-  return (
-    <Search/>
-  )
-}
+  return <Search />;
+};
 
-export default Page
+export default Page;

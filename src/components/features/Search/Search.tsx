@@ -1,16 +1,20 @@
-import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 
 import { SearchBox } from "./SearchBox";
 import { SearchNav } from "./SearchNav";
-
+import { CenterLayout } from "@/components/layout/CenterLayout";
+import { RightLayout } from "@/components/layout/RightLayout";
 
 export const Search = () => {
-    return (
-        <div>
-            <SearchBox/>
-            <SearchNav/>
-        </div>
-    );
+  return (
+    <>
+      <CenterLayout>
+        <SearchBox />
+        <SearchNav />
+      </CenterLayout>
+      <RightLayout>
+        <></>
+      </RightLayout>
+    </>
+  );
 };
