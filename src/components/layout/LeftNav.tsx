@@ -1,7 +1,10 @@
-import Link from "next/link";
 import React from "react";
-
-// Material Iconsのインポート
+import Link from "next/link";
+// シーンインポート
+import { Message } from "../features/Message/Message";
+import { Bookmark } from "../features/Bookmark/Bookmark";
+import { Profile } from "../features/Profile/Profile";
+// アイコンインポート
 import HomeIcon from "@mui/icons-material/Home";
 import SearchIcon from "@mui/icons-material/Search";
 import NotificationsIcon from "@mui/icons-material/Notifications";
@@ -10,86 +13,73 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 import PersonIcon from "@mui/icons-material/Person";
 
 const NAV_ITEMS = [
-  {
-    name: "Home",
-    href: "/",
-    icon: <HomeIcon />,
-  },
-  {
-    name: "Search",
-    href: "/Search",
-    icon: <SearchIcon />,
-  },
-  {
-    name: "Bell",
-    href: "/Bell",
-    icon: <NotificationsIcon />,
-  },
-  {
-    name: "Message",
-    href: "/Message",
-    icon: <MessageIcon />,
-  },
-  {
-    name: "Bookmark",
-    href: "/Bookmark",
-    icon: <BookmarkIcon />,
-  },
-  {
-    name: "Profile",
-    href: "/Profile",
-    icon: <PersonIcon />,
-  },
+  { name: "Home", href: "/", icon: <HomeIcon /> },
+  { name: "Search", href: "/Search", icon: <SearchIcon /> },
+  { name: "Bell", href: "/Bell", icon: <NotificationsIcon /> },
+  { name: "Message", href: "./Message/Message", icon: <MessageIcon /> },
+  { name: "Bookmark", href: "./Bookmark/Bookmark", icon: <BookmarkIcon /> },
+  { name: "Profile", href: "./Profile/Profile", icon: <PersonIcon /> },
 ];
 
 export const LeftNav = () => {
   return (
     <div className="flex" style={styles.navContainers}>
       {NAV_ITEMS.map((nav) => (
-        <div key={nav.name} style={styles.navContainer}>
-          <NavItem href={nav.href} name={nav.name} icon={nav.icon} />
-        </div>
+        <NavItem
+          key={nav.name}
+          name={nav.name}
+          icon={nav.icon}
+          href={nav.href}
+        />
       ))}
+    </div>
+  );
+};
+type Props = {
+  name: string;
+  icon: React.ReactNode;
+  href: string;
+};
+
+const NavItem = (props: Props) => {
+  const { icon, href } = props;
+  return (
+    <div style={styles.navContainer}>
+      <div style={styles.blank}></div>
+      <Link
+        href={href}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "8px",
+          width: "50%",
+        }}
+      >
+        {icon}
+      </Link>
     </div>
   );
 };
 
 const styles: { [key: string]: React.CSSProperties } = {
   navContainers: {
-    width: "5em",
+    width: "10%",
     display: "flex",
     flexDirection: "column",
     position: "fixed",
+    height: "100%",
+    backgroundColor: "#f0f0f0",
   },
   navContainer: {
-    width: "5em",
+    width: "100%",
     height: "5em",
-    gap: "1rem",
-    padding: "1rem",
-    backgroundColor: "#f0f0f0",
+
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    cursor: "pointer", // カーソルをポインタに変更
   },
-};
-
-type Props = {
-  href: string;
-  name: string;
-  icon: React.ReactNode; //MaterialIconを使うときはこの型
-};
-
-export const NavItem = (props: Props) => {
-  const { name, href, icon } = props;
-  return (
-    <Link
-      key={name}
-      href={href}
-      className="block p-4 text-gray-800 hover:bg-gray-100"
-    >
-      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-        {icon}
-      </div>
-    </Link>
-  );
+  blank: {
+    width: "50%",
+  },
 };

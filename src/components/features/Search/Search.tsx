@@ -1,17 +1,20 @@
-import { Home } from "@/components/features/Home/Home";
-import { SearchBox } from "@/components/features/Search/SearchBox";
+import React from "react";
+
+import { SearchBox } from "./SearchBox";
+import { SearchNav } from "./SearchNav";
 import { CenterLayout } from "@/components/layout/CenterLayout";
 import { RightLayout } from "@/components/layout/RightLayout";
 
-export default function Page() {
+export const Search = () => {
   return (
     <>
       <CenterLayout>
-        <Home />
+        <SearchBox />
+        <SearchNav />
       </CenterLayout>
       <RightLayout>
-        <SearchBox />
+        <></>
       </RightLayout>
     </>
   );
-}
+};

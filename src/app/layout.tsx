@@ -34,8 +34,16 @@ export default function RootLayout({
       >
         {/* これがページの1層目になる */}
         <LeftNav />
-        {children}
+        <div style={styles.contentContainer}>{children}</div>
       </body>
     </html>
   );
 }
+
+const styles: { [key: string]: React.CSSProperties } = {
+  contentContainer: {
+    marginLeft: "10%", // ナビゲーションバーの右側に表示
+    width: "90%",
+    display: "flex",
+  },
+};
